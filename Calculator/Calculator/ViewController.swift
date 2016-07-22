@@ -12,16 +12,27 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     
-    var isUserInTheMiddleOfTyping: Bool = false
+    var isUserInTheMiddleOfTyping = false
     
     @IBAction func digit(sender: UIButton) {
         let number = sender.currentTitle!
         if isUserInTheMiddleOfTyping {
-            display.text = display.text! + number
+            let textCurrentlyDisplay = display.text!
+            display.text = textCurrentlyDisplay + number
         } else {
             display.text = number
             isUserInTheMiddleOfTyping = true
         }
     }
+    
+    @IBAction func performOperation(sender: UIButton) {
+        isUserInTheMiddleOfTyping = false
+        if let mathematicalOperation = sender.currentTitle {
+            if mathematicalOperation == "pi"{
+                display.text = String(M_PI)
+            }
+        }
+    }
+    
 }
 
