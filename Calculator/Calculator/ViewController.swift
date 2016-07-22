@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Calculator
 //
-//  Created by Jakub Gac on 21.07.2016.
+//  Created by Jakub Gac on 22.07.2016.
 //  Copyright © 2016 Jakub Gac. All rights reserved.
 //
 
@@ -12,18 +12,16 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     
-    var userIsInTheMiddleOfTyping: Bool = false
+    var isUserInTheMiddleOfTyping: Bool = false
     
-    @IBAction func appear(sender: UIButton) {
-        let digit = sender.currentTitle!
-        if userIsInTheMiddleOfTyping {
-            display.text = display.text! + digit
+    @IBAction func digit(sender: UIButton) {
+        let number = sender.currentTitle!
+        if isUserInTheMiddleOfTyping {
+            display.text = display.text! + number
         } else {
-            display.text = digit
-            userIsInTheMiddleOfTyping = true
+            display.text = number
+            isUserInTheMiddleOfTyping = true
         }
-        
     }
-    
 }
 
