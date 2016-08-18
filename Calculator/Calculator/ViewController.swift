@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet private weak var display: UILabel!
-    
+
     private var isUserInTheMiddleOfTyping = false
     
     @IBAction private func digit(sender: UIButton) {
