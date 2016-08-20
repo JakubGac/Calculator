@@ -49,5 +49,12 @@ class ViewController: UIViewController {
         displayValue = brain.result
     }
     
+    @IBAction func dotButton() {
+        
+        if isUserInTheMiddleOfTyping {
+            let textCurrentlyDisplay = display.text!
+            display.text = textCurrentlyDisplay + "."
+        }
+    }
 }
 
