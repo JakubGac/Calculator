@@ -20,14 +20,14 @@ class CalculatorBrain {
     
     private var operations: Dictionary<String,Operation> = [
         //"pi" : Operation.Constant(M_PI), for future use
-        "C"  : Operation.Constant(0),
         "+/-" : Operation.UnaryOperation { -$0 },
         "✔️" : Operation.UnaryOperation(sqrt),
         "✖️" : Operation.BinaryOperation {$0 * $1},
         "➗" : Operation.BinaryOperation {$0 / $1},
         "➖" : Operation.BinaryOperation {$0 - $1},
         "➕" : Operation.BinaryOperation {$0 + $1},
-        "=" : Operation.Equals
+        "=" : Operation.Equals,
+        "C"  : Operation.Cleaning
     ]
     
     private enum Operation {
@@ -35,6 +35,7 @@ class CalculatorBrain {
         case UnaryOperation((Double) -> Double)
         case BinaryOperation((Double,Double) -> Double)
         case Equals
+        case Cleaning
     }
     
     func performOperation(symbol: String) {
@@ -49,6 +50,11 @@ class CalculatorBrain {
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals:
                 executePendingBinaryOperation()
+            case .Cleaning:
+                accumulator = 0.0
+                if pending != nil {
+                    pending!.firstOperand = 0.0
+                }
             }
         }
     }

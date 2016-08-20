@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private var isUserInTheMiddleOfTyping = false
     
     @IBAction private func digit(sender: UIButton) {
+        
         let number = sender.currentTitle!
         if isUserInTheMiddleOfTyping {
             let textCurrentlyDisplay = display.text!
@@ -53,7 +54,9 @@ class ViewController: UIViewController {
         
         if isUserInTheMiddleOfTyping {
             let textCurrentlyDisplay = display.text!
-            display.text = textCurrentlyDisplay + "."
+            if !textCurrentlyDisplay.containsString(".") {
+                display.text = textCurrentlyDisplay + "."
+            }
         }
     }
 }
